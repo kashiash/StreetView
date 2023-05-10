@@ -21,8 +21,11 @@ struct ContentView: View {
                 MapView(tappedLocation: $tappedLocation)
                 LookAroundView(tappedLocation: $tappedLocation, showLookAroundView: $showLookAroundView)
                     .frame(width: .infinity,height: 200)
-                    .opacity(showLookAroundView ? 1:0 )
                     .cornerRadius(10)
+                    .position(lookAroundViewLocation)
+                    .gesture(dragGesture)
+                    .opacity(showLookAroundView ? 1:0 )
+                  
             }
             .ignoresSafeArea(.all)
         }
