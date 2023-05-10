@@ -11,6 +11,9 @@
 		7648A5912A0C485C0003153D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7648A5902A0C485C0003153D /* ContentView.swift */; };
 		7648A5932A0C485D0003153D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7648A5922A0C485D0003153D /* Assets.xcassets */; };
 		7648A5972A0C485D0003153D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7648A5962A0C485D0003153D /* Preview Assets.xcassets */; };
+		7648A59E2A0C48A30003153D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7648A59D2A0C48A30003153D /* LocationManager.swift */; };
+		7648A5A02A0C4A270003153D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7648A59F2A0C4A270003153D /* MapView.swift */; };
+		7648A5A22A0C51340003153D /* LookAroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7648A5A12A0C51340003153D /* LookAroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,9 @@
 		7648A5922A0C485D0003153D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7648A5942A0C485D0003153D /* StreetView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StreetView.entitlements; sourceTree = "<group>"; };
 		7648A5962A0C485D0003153D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7648A59D2A0C48A30003153D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7648A59F2A0C4A270003153D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		7648A5A12A0C51340003153D /* LookAroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookAroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,9 @@
 				7648A5922A0C485D0003153D /* Assets.xcassets */,
 				7648A5942A0C485D0003153D /* StreetView.entitlements */,
 				7648A5952A0C485D0003153D /* Preview Content */,
+				7648A59D2A0C48A30003153D /* LocationManager.swift */,
+				7648A59F2A0C4A270003153D /* MapView.swift */,
+				7648A5A12A0C51340003153D /* LookAroundView.swift */,
 			);
 			path = StreetView;
 			sourceTree = "<group>";
@@ -139,8 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7648A5A22A0C51340003153D /* LookAroundView.swift in Sources */,
 				7648A5912A0C485C0003153D /* ContentView.swift in Sources */,
+				7648A5A02A0C4A270003153D /* MapView.swift in Sources */,
 				7648A58F2A0C485C0003153D /* StreetViewApp.swift in Sources */,
+				7648A59E2A0C48A30003153D /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +281,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Bo tak!";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -287,7 +300,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kashiash.StreetView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -307,6 +322,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Bo tak!";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -325,7 +341,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kashiash.StreetView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
