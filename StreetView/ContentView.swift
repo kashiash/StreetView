@@ -18,9 +18,12 @@ struct ContentView: View {
     var body: some View {
         GeometryReader{ geo in
             ZStack{
+                Color.white.onAppear {
+                    self.lookAroundViewLocation = .init(x: 150, y: geo.size.height - 100)
+                }
                 MapView(tappedLocation: $tappedLocation)
                 LookAroundView(tappedLocation: $tappedLocation, showLookAroundView: $showLookAroundView)
-                    .frame(width: .infinity,height: 200)
+                    .frame(width: 250,height: 200)
                     .cornerRadius(10)
                     .position(lookAroundViewLocation)
                     .gesture(dragGesture)

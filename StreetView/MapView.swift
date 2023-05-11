@@ -5,8 +5,7 @@
 //  Created by Jacek Kosinski U on 10/05/2023.
 //
 
-import Foundation
-import UIKit
+
 import MapKit
 import SwiftUI
 
@@ -22,7 +21,8 @@ struct MapView: UIViewRepresentable {
         
         mapView.showsUserLocation = true
         
-        let mapTap = UITapGestureRecognizer(target: context.coordinator, action: #selector(MapViewCoorinator.mapTapped(_:)))
+        let mapTap = UITapGestureRecognizer(target: context.coordinator,
+                                            action: #selector(MapViewCoordinator.mapTapped(_:)))
         mapView.addGestureRecognizer(mapTap)
         
         return mapView
@@ -38,37 +38,8 @@ struct MapView: UIViewRepresentable {
         }
     }
     
-    func makeCoordinator() -> MapViewCoorinator {
-        MapViewCoorinator(self, tappedLocation: $tappedLocation)
+    func makeCoordinator() -> MapViewCoordinator {
+        MapViewCoordinator(self, tappedLocation: $tappedLocation)
     }
 }
 
-class MapViewCoorinator: NSObject,MKMapViewDelegate {
-    
-    @Binding var tappedLocation: CLLocationCoordinate2D?
-    
-    var mapViewController : MapView
-    
-    init(_ mapView:MapView, tappedLocation: Binding<CLLocationCoordinate2D?>) {
-        self.mapViewController = mapView
-        self._tappedLocation = tappedLocation
-    }
-    
-    @objc func mapTapped(_ sender: UITapGestureRecognizer) {
-        guard let mapView = sender.view as? MKMapView else { return }
-        
-        let touchLocation = sender.location(in: sender.view)
-        
-        let locationCoordinate = mapView.convert(touchLocation, toCoordinateFrom: sender.view)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = .init(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
-        
-        self.tappedLocation = locationCoordinate
-        
-        mapView.removeAnnotation(mapView.annotations)
-        mapView.addAnnotation(annotation)
-        
-        
-    }
-}
