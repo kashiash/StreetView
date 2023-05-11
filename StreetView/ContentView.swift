@@ -10,40 +10,49 @@ import CoreLocation
 import MapKit
 
 struct ContentView: View {
-    @State var tappedLocation: CLLocationCoordinate2D?
-    @State var showLookAroundView: Bool = false
-    
-    @State private var lookAroundViewLocation: CGPoint = .zero
+    @StateObject var viewModel: ContentViewModel
+    @FocusState private var isFocusedTextField: Bool
     
     var body: some View {
-        GeometryReader{ geo in
-            ZStack{
-                Color.white.onAppear {
-                    self.lookAroundViewLocation = .init(x: 150, y: geo.size.height - 100)
+        NavigationView {
+            VStack(alignment: .leading, spacing: 0){
+                TextField("Type address", text: $viewModel.searchableText)
+                    .padding()
+                    .autocorrectionDisabled()
+                    .focused($isFocusedTextField)
+                    .font(.title)
+                    .onReceive (viewModel.$searchableText.debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+                    ){
+                        viewModel.searchAddress($0)
+                    }
+                    .background(Color.init(uiColor: .systemBackground))
+                    .overlay{
+                        ClearButton(text:$viewModel.searchableText)
+                            .padding(.trailing)
+                            .padding(.top,8)
+                        
+                    }
+                    .onAppear{
+                        isFocusedTextField = true
+                    }
+                
+                List(self.viewModel.results){ address in
+                    AddressRow(address: address)
+                        .listRowBackground(backgroundColor)
                 }
-                MapView(tappedLocation: $tappedLocation)
-                LookAroundView(tappedLocation: $tappedLocation, showLookAroundView: $showLookAroundView)
-                    .frame(width: 250,height: 200)
-                    .cornerRadius(10)
-                    .position(lookAroundViewLocation)
-                    .gesture(dragGesture)
-                    .opacity(showLookAroundView ? 1:0 )
-                  
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
             }
-            .ignoresSafeArea(.all)
+            .background(backgroundColor)
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
     
-    var dragGesture: some Gesture {
-      DragGesture()
-            .onChanged { value in
-                self.lookAroundViewLocation = value.location
-            }
-    }
+    var backgroundColor: Color = Color.init(uiColor: .systemGray6)
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: ContentViewModel())
     }
 }
